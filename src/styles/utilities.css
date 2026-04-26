@@ -1,0 +1,11 @@
+@import 'tailwindcss';
+
+.std__shadow {
+  @apply shadow-md shadow-black/40;
+}
+.std__shadow--s {
+  @apply shadow-sm shadow-black/30;
+}
+.std__shadow--l {
+  @apply shadow-xl shadow-black/20;
+}

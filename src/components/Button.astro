@@ -1,0 +1,114 @@
+---
+interface Props {
+  color: keyof typeof Colors
+  style?: keyof typeof Styles
+  behavior?: keyof typeof Behaviors
+  size?: keyof typeof Sizes
+  modifier?: keyof typeof Modifiers
+  class?: string
+}
+
+const Colors = {
+  neutral: 'btn-neutral',
+  primary: 'btn-primary',
+  secondary: 'btn-secondary',
+  accent: 'btn-accent',
+  info: 'btn-info',
+  success: 'btn-success',
+  warning: 'btn-warning',
+  error: 'btn-error',
+}
+
+const Styles = {
+  outline: 'btn-outline',
+  dash: 'btn-dash',
+  soft: 'btn-soft',
+  ghost: 'btn-ghost',
+  link: 'btn-link',
+}
+
+const Behaviors = {
+  active: 'btn-active',
+  disabled: 'btn-disabled',
+}
+const Sizes = {
+  xs: 'btn-xs',
+  sm: 'btn-sm',
+  md: 'btn-md',
+  lg: 'btn-lg',
+}
+const Modifiers = {
+  wide: 'btn-wide',
+  block: 'btn-block',
+  square: 'btn-square',
+  circle: 'btn-circle',
+}
+
+const { color = 'primary', style, behavior, size, modifier, class: className } = Astro.props
+const isColor = Colors[color]
+const isStyle = style ? Styles[style] : undefined
+const isBehavior = behavior ? Behaviors[behavior] : undefined
+const isSize = size ? Sizes[size] : undefined
+const isModifier = modifier ? Modifiers[modifier] : undefined
+---
+
+<button class:list={['btn std__shadow', isColor, isStyle, isBehavior, isSize, isModifier, className]}>
+  <slot />
+</button>
+
+<style>
+  @reference 'tailwindcss';
+  .btn {
+    @apply px-5 py-1 h-auto;
+  }
+  /* Colors */
+  .btn-primary {
+    @apply bg-white
+      text-black
+      hover:bg-gray-200
+      border-white
+      hover:border-gray-200;
+  }
+  .btn-secondary {
+    @apply bg-black
+    border-black
+      text-white
+      hover:bg-gray-800
+      hover:border-gray-800;
+  }
+  .btn-success {
+    @apply bg-lime-500
+    border-lime-500
+      text-white
+      hover:bg-lime-600
+      hover:border-lime-600;
+  }
+  .btn-warning {
+    @apply bg-amber-500
+    border-amber-500
+      text-white
+      hover:bg-amber-600
+      hover:border-amber-600;
+  }
+  .btn-error {
+    @apply bg-red-500
+    border-red-500
+      text-white
+      hover:bg-red-600
+      hover:border-red-600;
+  }
+  .btn-accent {
+    @apply bg-mauve-500
+    border-mauve-500
+      text-white
+      hover:bg-mauve-600
+      hover:border-mauve-600;
+  }
+  .btn-info {
+    @apply bg-indigo-500
+    border-indigo-500
+      text-white
+      hover:bg-indigo-600
+      hover:border-indigo-600;
+  }
+</style>

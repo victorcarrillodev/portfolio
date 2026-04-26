@@ -1,0 +1,85 @@
+---
+import Button from './Button.astro'
+
+// 1. Centralizamos los enlaces de navegación (Principio DRY)
+// Esto facilita agregar, quitar o modificar rutas en el futuro
+const navLinks = [
+  { name: 'HOME', href: '/' },
+  { name: 'SOBRE MÍ', href: '#sobre-mi' },
+  { name: 'CV', href: '#cv' },
+  { name: 'CONTACTO', href: '#contacto' },
+  { name: 'HABILIDADES', href: '#habilidades' },
+  { name: 'PROYECTOS', href: '#proyectos' },
+]
+---
+
+<nav class='navbar shadow-xl bg-transparent backdrop-blur-lg sticky top-0 z-50'>
+  <div class='navbar-start'>
+    <div class='drawer lg:hidden z-50'>
+      <input id='mobile-menu-drawer' type='checkbox' class='drawer-toggle' />
+
+      <div class='drawer-content'>
+        <label for='mobile-menu-drawer' class='btn btn-ghost btn-circle' aria-label='Abrir menú de navegación'>
+          <svg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h7'></path>
+          </svg>
+        </label>
+      </div>
+
+      <div class='drawer-side'>
+        <label for='mobile-menu-drawer' aria-label='Cerrar menú' class='drawer-overlay'></label>
+        <ul class='menu bg-base-200 min-h-full w-80 p-4 pt-10'>
+          {
+            navLinks.map((link) => (
+              <li>
+                <a href={link.href} class='font-bold text-lg'>
+                  {link.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <a href='/' aria-label='Ir al inicio' class='btn btn-ghost text-xl'>
+      <img src='/logo.png' alt='Logotipo de mi portafolio' class='h-8 w-auto' />
+    </a>
+  </div>
+
+  <div class='navbar-center hidden lg:flex'>
+    <ul class='menu menu-horizontal px-1'>
+      {
+        navLinks.map((link) => (
+          <li>
+            <a href={link.href} class='font-bold px-3 hover:text-primary transition-colors'>
+              {link.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class='navbar-end gap-3'>
+    <Button color='primary'>Contacto</Button>
+    <Button color='secondary' class='hidden sm:inline-flex'>Descargar CV</Button>
+  </div>
+</nav>
+
+<style>
+  @reference 'tailwindcss';
+  .navbar {
+    @apply shadow-xl bg-transparent backdrop-blur-lg px-7;
+  }
+  .navbar-center {
+    @apply hidden lg:flex;
+
+    & > [class*='menu'] li {
+      @apply px-3 font-bold;
+    }
+  }
+  .navbar-end > :global(.navbar__button) {
+    @apply nth-1:mr-3;
+  }
+</style>
