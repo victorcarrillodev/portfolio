@@ -3,7 +3,7 @@ name: Deploy Portfolio
 on:
   push:
     branches:
-      - main # Asegúrate de que este sea el nombre de tu rama principal
+      - main
 
 jobs:
   build-and-deploy:
@@ -12,32 +12,36 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v4
 
-      # 1. Instalar Bun en el entorno de GitHub Actions
+      # 1. Forzar Node.js a la versión 22 (necesario para Astro 6+)
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # 2. Instalar Bun
       - name: Configurar Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      # 2. Instalar dependencias y compilar el proyecto
+      # 3. Ahora el build no fallará por versión de Node
       - name: Instalar dependencias y hacer Build
         run: |
           bun install
           bun run build
 
-      # 3. Conectar a tu red privada de Tailscale
       - name: Conectar a la red de Tailscale
         uses: tailscale/github-action@v2
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
-      # 4. Enviar los archivos al servidor mediante SCP
       - name: Desplegar archivos al servidor
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.SERVER_IP }} # Usa la IP de Tailscale (100.x.y.z)
+          host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: 'dist/*' # Verifica que 'dist' sea la carpeta de salida de tu build
+          source: 'dist/*'
           target: '/var/www/html/portfolio'
           strip_components: 1
-          overwrite: true # Esto reemplaza los archivos existentes
+          overwrite: true
