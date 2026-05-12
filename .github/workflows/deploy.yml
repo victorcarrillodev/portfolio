@@ -19,8 +19,8 @@ jobs:
 
       - name: Instalar dependencias y hacer Build
         run: |
-          npm install
-          npm run build
+          bun install
+          bun run build
 
       - name: Conectar a la red de Tailscale
         uses: tailscale/github-action@v2
