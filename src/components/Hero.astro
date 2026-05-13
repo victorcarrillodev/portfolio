@@ -1,5 +1,9 @@
 ---
 import Button from './Button.astro'
+
+import blobImagen from '../assets/blob.svg'
+import miImagen from '../assets/image.png'
+import { Image } from 'astro:assets'
 ---
 
 <div class='her'>
@@ -68,8 +72,8 @@ import Button from './Button.astro'
     </div>
   </div>
   <div class='her__image'>
-    <img src='/portfolio/src/assets/blob.svg' class='her__image-blob' />
-    <img src='/portfolio/src/assets/image.png' class='her__image-image' />
+    <Image src={blobImagen} class='her__image-blob' alt='Blob decoration' width={500} height={500} />
+    <Image src={miImagen} class='her__image-image' alt='Victor Carrillo' width={400} height={500} />
   </div>
 </div>
 
@@ -96,7 +100,7 @@ import Button from './Button.astro'
       }
     }
     .her__image {
-      @apply w-[40vw] bg-amber-700;
+      @apply w-[40vw];
       //background-color: blueviolet;
       position: relative;
 
