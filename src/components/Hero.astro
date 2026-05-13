@@ -1,0 +1,58 @@
+<div class='hero min-h-screen'>
+  <div class='hero-content flex-col lg:flex-row-reverse'>
+    <div class='hero__image'>
+      <img src='/src/assets/image.png' class='hero__image-image' />
+      <img src='/src/assets/blob.svg' class='hero__image-blob' />
+    </div>
+    <div class='hero__text'>
+      <h3>¡Hola!</h3>
+      <h1>Soy victor Carrillo</h1>
+      <h2>Full Stack Developer</h2>
+      <p class='py-6'>
+        Soy desarrollador full stack, creativo y enfocado en resolver problemas. Me apasiona la programación y los retos
+        que impulsan a mejorar constantemente. Construyo soluciones eficientes, claras y funcionales, convirtiendo ideas
+        en experiencias digitales de valor.
+      </p>
+      <button class='btn btn-primary'>Get Started</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  @import 'tailwindcss';
+  .hero {
+    .hero__image {
+      /* La clave es que el contenedor sea relativo para que el blob absoluto no se escape */
+      position: relative;
+
+      .hero__image-blob {
+        /* Se posiciona al fondo */
+        z-index: 0;
+        /* Ajusta estos valores para centrar o mover el blob según tu diseño */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .hero__image-image {
+        /* Se posiciona al frente */
+        z-index: 10;
+        /* Un pequeño truco visual para que resalte */
+        filter: drop-shadow(0 20px 13px rgba(0, 0, 0, 0.03));
+      }
+    }
+    .hero__text {
+      & > h3 {
+        @apply text-3xl font-bold;
+      }
+      & > h1 {
+        @apply text-7xl font-extrabold;
+      }
+      & > h2 {
+        @apply text-5xl font-black;
+      }
+      & > p {
+      }
+    }
+  }
+</style>

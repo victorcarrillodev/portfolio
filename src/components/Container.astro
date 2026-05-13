@@ -1,0 +1,94 @@
+---
+// src/components/Container.astro
+
+export interface Props {
+  /**
+   * Determina el ancho máximo del contenedor.
+   * El contenedor crecerá con el tamaño de la pantalla hasta llegar a este valor.
+   * @default 'lg'
+   */
+  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false
+  /**
+   * Si es true, se eliminan los paddings horizontales (gutters).
+   * @default false
+   */
+  disableGutters?: boolean
+  /**
+   * Clases CSS personalizadas adicionales.
+   */
+  class?: string
+  /**
+   * La etiqueta HTML utilizada para el nodo raíz.
+   * @default 'div'
+   */
+  as?: any
+}
+
+const { maxWidth = 'lg', disableGutters = false, class: className = '', as: Element = 'div', ...rest } = Astro.props
+
+// Construimos la lista de clases dinámicamente
+const containerClasses = [
+  'astro-mui-container',
+  maxWidth ? `max-width-${maxWidth}` : '',
+  disableGutters ? 'disable-gutters' : '',
+  className,
+]
+  .filter(Boolean)
+  .join(' ')
+---
+
+<Element class={containerClasses} {...rest}>
+  <slot />
+</Element>
+
+<style>
+  /* Estilos base del contenedor */
+  .astro-mui-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    display: block;
+
+    /* Gutters (paddings) por defecto en pantallas pequeñas */
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Gutters para pantallas medianas y grandes (igual que MUI) */
+  @media (min-width: 600px) {
+    .astro-mui-container {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+
+  /* Modificador para quitar gutters */
+  .astro-mui-container.disable-gutters {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* 
+   * Breakpoints de max-width exactos de Material UI v5
+   */
+  .max-width-xs {
+    max-width: 444px;
+  }
+
+  .max-width-sm {
+    max-width: 600px;
+  }
+
+  .max-width-md {
+    max-width: 900px;
+  }
+
+  .max-width-lg {
+    max-width: 1200px;
+  }
+
+  .max-width-xl {
+    max-width: 1536px;
+  }
+</style>
