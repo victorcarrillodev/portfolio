@@ -1,47 +1,29 @@
-<div class='hero min-h-screen'>
-  <div class='hero-content flex-col lg:flex-row-reverse'>
-    <div class='hero__image'>
-      <img src='/src/assets/image.png' class='hero__image-image' />
-      <img src='/src/assets/blob.svg' class='hero__image-blob' />
-    </div>
-    <div class='hero__text'>
-      <h3>¡Hola!</h3>
-      <h1>Soy victor Carrillo</h1>
-      <h2>Full Stack Developer</h2>
-      <p class='py-6'>
-        Soy desarrollador full stack, creativo y enfocado en resolver problemas. Me apasiona la programación y los retos
-        que impulsan a mejorar constantemente. Construyo soluciones eficientes, claras y funcionales, convirtiendo ideas
-        en experiencias digitales de valor.
-      </p>
-      <button class='btn btn-primary'>Get Started</button>
-    </div>
+<div class='her'>
+  <div class='her__title'>
+    <h3>Hola!</h3>
+    <h1>Soy Victor Carrillo</h1>
+    <h2>FullStack Developer</h2>
+    <br /><br />
+    <p>
+      Soy desarrollador full stack, creativo y enfocado en resolver problemas. Me apasiona la programación y los retos
+      que impulsan a mejorar constantemente. Construyo soluciones eficientes, claras y funcionales, convirtiendo ideas
+      en experiencias digitales de valor.
+    </p>
+  </div>
+  <div class='her__image'>
+    <img src='/portfolio/src/assets/blob.svg' class='her__image-blob' />
+    <img src='/portfolio/src/assets/image.png' class='her__image-image' />
   </div>
 </div>
 
 <style>
   @import 'tailwindcss';
-  .hero {
-    .hero__image {
-      /* La clave es que el contenedor sea relativo para que el blob absoluto no se escape */
-      position: relative;
+  .her {
+    @apply min-h-screen flex  justify-center items-center w-9/10 mx-auto;
 
-      .hero__image-blob {
-        /* Se posiciona al fondo */
-        z-index: 0;
-        /* Ajusta estos valores para centrar o mover el blob según tu diseño */
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
+    .her__title {
+      @apply w-[60vw];
 
-      .hero__image-image {
-        /* Se posiciona al frente */
-        z-index: 10;
-        /* Un pequeño truco visual para que resalte */
-        filter: drop-shadow(0 20px 13px rgba(0, 0, 0, 0.03));
-      }
-    }
-    .hero__text {
       & > h3 {
         @apply text-3xl font-bold;
       }
@@ -51,7 +33,27 @@
       & > h2 {
         @apply text-5xl font-black;
       }
-      & > p {
+    }
+    .her__image {
+      @apply w-[40vw] bg-amber-700;
+      //background-color: blueviolet;
+      position: relative;
+
+      .her__image-blob {
+        //background-color: red;
+        @apply w-full;
+        position: absolute;
+        z-index: 0;
+        top: 90%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .her__image-image {
+        @apply w-[70%] ml-30;
+        position: relative;
+        z-index: 10;
+        filter: drop-shadow(0 20px 13px rgba(0, 0, 0, 0.03));
       }
     }
   }
