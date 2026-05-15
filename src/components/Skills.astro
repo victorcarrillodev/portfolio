@@ -1,54 +1,80 @@
 ---
-// Importa el componente Image para optimización si lo deseas
-import { Image } from 'astro:assets'
-
-// Importamos el archivo de fondo exacto
 import backgroundBlobs from '../assets/images/Skills.svg'
 import Container from './Container.astro'
 
-// Asumimos que tienes los iconos en src/assets/images/icons/
+// FRONTEND
+import html5Icon from '../assets/icons/html5.svg'
+import css3Icon from '../assets/icons/css3.svg'
+import javascriptIcon from '../assets/icons/javascript.svg'
+import typescriptIcon from '../assets/icons/typescript.svg'
+import reactIcon from '../assets/icons/react.svg'
+import angularIcon from '../assets/icons/angular.svg'
+import vueIcon from '../assets/icons/vue.svg'
+import astroIcon from '../assets/icons/astro.svg'
+
+// BACKEND
+import expressIcon from '../assets/icons/express.svg'
+import nestjsIcon from '../assets/icons/nestjs.svg'
+import djangoIcon from '../assets/icons/django.svg'
+import phpIcon from '../assets/icons/php.svg'
+import postgresqlIcon from '../assets/icons/postgresql.svg'
+import redisIcon from '../assets/icons/redis.svg'
+import nodejsIcon from '../assets/icons/nodejs.svg'
+import mongodbIcon from '../assets/icons/mongodb.svg'
+import pythonIcon from '../assets/icons/python.svg'
+
+// MOBILE
+import flutterIcon from '../assets/icons/flutter.svg'
+import dartIcon from '../assets/icons/dart.svg'
+
+// DEVOPS
+import gitlabciIcon from '../assets/icons/gitlabci.svg'
+import jenkinsIcon from '../assets/icons/jenkins.svg'
+import gitlabIcon from '../assets/icons/gitlab.svg'
+import dockerIcon from '../assets/icons/docker.svg'
+
 const skillCategories = [
   {
     title: 'Frontend',
     skills: [
-      { name: 'HTML5', icon: '/src/assets/icons/html5.svg' },
-      { name: 'CSS3', icon: '/src/assets/icons/css3.svg' },
-      { name: 'JavaScript', icon: '/src/assets/icons/javascript.svg' },
-      { name: 'TypeScript', icon: '/src/assets/icons/typescript.svg' },
-      { name: 'React', icon: '/src/assets/icons/react.svg' },
-      { name: 'Angular', icon: '/src/assets/icons/angular.svg' },
-      { name: 'Vue', icon: '/src/assets/icons/vue.svg' },
-      { name: 'Astro', icon: '/src/assets/icons/astro.svg' },
+      { name: 'HTML5', icon: html5Icon },
+      { name: 'CSS3', icon: css3Icon },
+      { name: 'JavaScript', icon: javascriptIcon },
+      { name: 'TypeScript', icon: typescriptIcon },
+      { name: 'React', icon: reactIcon },
+      { name: 'Angular', icon: angularIcon },
+      { name: 'Vue', icon: vueIcon },
+      { name: 'Astro', icon: astroIcon },
     ],
   },
   {
     title: 'Backend',
     skills: [
-      { name: 'Express', icon: '/src/assets/icons/express.svg' },
-      { name: 'NestJS', icon: '/src/assets/icons/nestjs.svg' },
-      { name: 'Django', icon: '/src/assets/icons/django.svg' },
-      { name: 'PHP', icon: '/src/assets/icons/php.svg' },
-      { name: 'PostgreSQL', icon: '/src/assets/icons/postgresql.svg' },
-      { name: 'Redis', icon: '/src/assets/icons/redis.svg' },
-      { name: 'Node.js', icon: '/src/assets/icons/nodejs.svg' },
-      { name: 'MongoDB', icon: '/src/assets/icons/mongodb.svg' },
-      { name: 'Python', icon: '/src/assets/icons/python.svg' },
+      { name: 'Express', icon: expressIcon },
+      { name: 'NestJS', icon: nestjsIcon },
+      { name: 'Django', icon: djangoIcon },
+      { name: 'PHP', icon: phpIcon },
+      { name: 'PostgreSQL', icon: postgresqlIcon },
+      { name: 'Redis', icon: redisIcon },
+      { name: 'Node.js', icon: nodejsIcon },
+      { name: 'MongoDB', icon: mongodbIcon },
+      { name: 'Python', icon: pythonIcon },
     ],
   },
   {
     title: 'Mobile',
     skills: [
-      { name: 'Flutter', icon: '/src/assets/icons/flutter.svg' },
-      { name: 'Dart', icon: '/src/assets/icons/dart.svg' },
+      { name: 'Flutter', icon: flutterIcon },
+      { name: 'Dart', icon: dartIcon },
     ],
   },
   {
     title: 'CI/CD - DevOps',
     skills: [
-      { name: 'GitLab CI', icon: '/src/assets/icons/gitlabci.svg' },
-      { name: 'Jenkins', icon: '/src/assets/icons/jenkins.svg' },
-      { name: 'GitLab', icon: '/src/assets/icons/gitlab.svg' },
-      { name: 'Docker', icon: '/src/assets/icons/docker.svg' },
+      { name: 'GitLab CI', icon: gitlabciIcon },
+      { name: 'Jenkins', icon: jenkinsIcon },
+      { name: 'GitLab', icon: gitlabIcon },
+      { name: 'Docker', icon: dockerIcon },
     ],
   },
 ]
@@ -74,8 +100,12 @@ const skillCategories = [
 
               <div class='flex flex-wrap gap-4 items-center'>
                 {category.skills.map((skill) => (
-                  <div class='std__shadow bg-gray-200 rounded-xl shadow-lg p-1 w-[5vw] h-[5vw] flex items-center justify-center hover:scale-105 transition-transform duration-200'>
-                    <img src={skill.icon} alt={skill.name} class='w-17 h-17 object-contain' />
+                  <div
+                    class='std__shadow bg-gray-200 rounded-xl shadow-lg p-2
+                    w-20 h-20 flex items-center justify-center
+                    hover:scale-105 transition-transform duration-200'
+                  >
+                    <img src={skill.icon.src} alt={skill.name} class='w-14 h-14 object-contain' loading='lazy' />
                   </div>
                 ))}
               </div>
@@ -88,10 +118,8 @@ const skillCategories = [
 </section>
 
 <style>
-  /* Referencia a Tailwind para autocompletado en algunos editores */
   @reference 'tailwindcss';
 
-  /* Pequeños retoques visuales adicionales */
   img.object-contain {
     max-width: 100%;
     max-height: 100%;
