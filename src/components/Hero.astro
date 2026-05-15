@@ -70,6 +70,21 @@ import { Image } from 'astro:assets'
       <Button color='secondary'>Contrátame</Button>
       <Button color='primary' styled='outline'> Contrátame</Button>
     </div>
+    <br /><br />
+    <div class='her__info'>
+      <div>
+        <span>10+</span>
+        <p>Clientes Comprobables</p>
+      </div>
+      <div>
+        <span>12+</span>
+        <p>Proyectos Concluidos</p>
+      </div>
+      <div>
+        <span>5+</span>
+        <p>Años de Experiencia</p>
+      </div>
+    </div>
   </div>
   <div class='her__image'>
     <Image src={blobImagen} class='her__image-blob' alt='Blob decoration' width={500} height={500} />
@@ -80,7 +95,7 @@ import { Image } from 'astro:assets'
 <style>
   @import 'tailwindcss';
   .her {
-    @apply min-h-screen flex  justify-center items-center w-9/10 mx-auto;
+    @apply min-h-screen flex justify-center items-center w-9/10 mx-auto;
 
     .her__title {
       @apply w-[60vw];
@@ -119,6 +134,15 @@ import { Image } from 'astro:assets'
         position: relative;
         z-index: 10;
         filter: drop-shadow(0 20px 13px rgba(0, 0, 0, 0.03));
+      }
+    }
+    .her__info {
+      @apply flex gap-10;
+      & > div > span {
+        @apply text-7xl font-extrabold;
+      }
+      & > div > p {
+        @apply text-sm font-bold;
       }
     }
   }

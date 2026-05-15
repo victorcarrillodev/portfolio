@@ -9,3 +9,7 @@
 .std__shadow--l {
   @apply shadow-xl shadow-black/20;
 }
+
+.std__title {
+  @apply text-7xl font-bold mb-13;
+}
